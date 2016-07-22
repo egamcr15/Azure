@@ -1,0 +1,1 @@
+﻿Initialize-Disk -Number 4 -PartitionStyle MBR
