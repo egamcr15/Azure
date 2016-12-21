@@ -366,7 +366,7 @@
             "value": "[variables('nicNameHN')]"
           },
           "adminUsername": {
-            "value": "pmxmgrwtl"
+            "value": "[parameters('adminUsername')]"
           },
           "adminPassword": {
             "value": "[parameters('adminPassword')]"
@@ -511,7 +511,7 @@
             "value": "latest"
           },
           "adminUsername": {
-            "value": "admlnx"
+            "value": "[parameters('adminUsername')]"
           },
           "adminPassword": {
             "value": "[parameters('adminPassword')]"
