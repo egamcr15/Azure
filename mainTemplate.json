@@ -344,30 +344,25 @@
         "Microsoft.Resources/deployments/createAvailabilitySets"
       ],
       "properties": {
-        "mode": "Incremental",
-        "templateLink": {
+        "mode": "Incremental",        "templateLink": {
           "uri": "[concat(parameters('artifactsBaseUrl'), '/headnode-rdma-', variables('hnRDMAState'), '.json')]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "apiVersion": {
-            "value": "[variables('apiVersion')]"
+          "apiVersion": {            "value": "[variables('apiVersion')]"
           },
           "vmName": {
             "value": "[parameters('clusterName')]"
-          },
-          "vmSize": {
+          },          "vmSize": {
             "value": "[parameters('headNodeVMSize')]"
           },
           "storageAccountName": {
             "value": "[variables('hnStorageAccountName')]"
           },
-          "nicName": {
-            "value": "[variables('nicNameHN')]"
+          "nicName": {            "value": "[variables('nicNameHN')]"
           },
           "adminUsername": {
-            "value": "pmxmgrwtl"
-          },
+            "value": "pmxmgrwtl"          },
           "adminPassword": {
             "value": "[parameters('adminPassword')]"
           },
@@ -414,7 +409,7 @@
           },
           "DNSServerAddress": {
             "value": [
-              "192.168.45.4",
+              "172.31.12.4",
               "8.8.8.8"
             ]
           }
