@@ -182,9 +182,9 @@
     "storageAccountIndexWidth": "[length(string(sub(add(variables('cnStorageAccountNumber'), variables('cnStorageAccountStartIndex')), 1)))]",
     "hnStorageAccountName": "[concat(parameters('storageAccountNamePrefix'), padLeft(string(parameters('storageAccountStartIndex')), variables('storageAccountIndexWidth'), '0'))]",
     "hnStorageAccountId": "[resourceId('Microsoft.Storage/storageAccounts',variables('hnStorageAccountName'))]",
-    "addressPrefix": "192.168.45.0/16",
-    "subnet1Name": "Subnet-1",
-    "subnet1Prefix": "192.168.45.0/22",
+    "addressPrefix": "171.31.12.0/24",
+    "subnet1Name": "PMX-172.31.12",
+    "subnet1Prefix": "172.31.12.0/24",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnet1Name'))]",
     "publicIPAddressType": "Dynamic",
@@ -299,7 +299,7 @@
             "name": "IPConfig",
             "properties": {
               "privateIPAllocationMethod": "Static",
-              "privateIPAddress": "192.168.45.4",
+              "privateIPAddress": "172.31.12.4",
               "publicIPAddress": {
                 "id": "[reference('setupClusterPublicIP').outputs.resourceId.value]"
               },
@@ -366,7 +366,7 @@
             "value": "[variables('nicNameHN')]"
           },
           "adminUsername": {
-            "value": "[parameters('adminUsername')]"
+            "value": "pmxmgrwtl"
           },
           "adminPassword": {
             "value": "[parameters('adminPassword')]"
@@ -511,7 +511,7 @@
             "value": "latest"
           },
           "adminUsername": {
-            "value": "[parameters('adminUsername')]"
+            "value": "admlnx"
           },
           "adminPassword": {
             "value": "[parameters('adminPassword')]"
