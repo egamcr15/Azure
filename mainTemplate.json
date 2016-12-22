@@ -279,7 +279,7 @@
             "name": "IPConfig",
             "properties": {
               "privateIPAllocationMethod": "Static",
-              "privateIPAddress": "172.31.12.4",
+              "privateIPAddress": "172.30.1.8",
               "publicIPAddress": {
                 "id": "[reference('setupClusterPublicIP').outputs.resourceId.value]"
               },
