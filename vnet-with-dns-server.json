@@ -2,125 +2,77 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "location": {
+    "apiVersion": {
       "type": "string",
       "metadata": {
-        "Description": "The region to deploy the resources into"
+        "description": "The API version"
       }
     },
     "virtualNetworkName": {
       "type": "string",
       "metadata": {
-        "Description": "The name of the Virtual Network to Create"
+        "description": "The name of the Virtual Network to Create"
       }
     },
-    "addressPrefix": {
+    "virtualNetworkAddressRange": {
       "type": "string",
       "metadata": {
-        "Description": "The address range of the new VNET in CIDR format"
+        "description": "The address range of the new VNET in CIDR format"
       },
-	  "defaultValue":"192.168.0.0/16"
+      "defaultValue": "10.0.0.0/16"
     },
-    "subnetPresentationName": {
+    "subnetName": {
       "type": "string",
       "metadata": {
-        "Description": "The name of the subnet created in the new VNET"
+        "description": "The name of the subnet created in the new VNET"
       }
     },
-	 "subnetProcessingName": {
-      "type": "string",
-      "metadata": {
-        "Description": "The name of the subnet created in the new VNET"
-      },
-    },
-     "subnetDataName": {
-      "type": "string",
-      "metadata": {
-        "Description": "The name of the subnet created in the new VNET"
-      }
-    },
-     "subnetAuthenticationName": {
-      "type": "string",
-      "metadata": {
-        "Description": "The name of the subnet created in the new VNET"
-      },
-    },
-    "PresentationPrefix": {
-      "type": "string",
-      "metadata": {
-        "Description": "The address range of the subnet created in the new VNET"
-      },
-	  "defaultValue":"192.168.1.0/24"
-    },
-	"ProcessingPrefix": {
-      "type": "string",
-      "metadata": {
-        "Description": "The address range of the subnet created in the new VNET"
-      },
-	  "defaultValue":"192.168.2.0/24"
-	  
-    },
-	"DataPrefix": {
-      "type": "string",
-      "metadata": {
-        "Description": "The address range of the subnet created in the new VNET"
-      },
-	  "defaultValue":"192.168.3.0/24"
-    },
-	"AuthenticationPrefix": {
-      "type": "string",
-      "metadata": {
-        "Description": "The address range of the subnet created in the new VNET"
-      },
-	  "defaultValue":"192.168.4.0/24"
-    },
+	"subnet2Name": {
+		"type": "string",
+	},
+	"subnetRange": {
+		"type": "string",
+	},
+	
+	"subnet2Range": {
+		"type": "string",
+	},
+    
     "DNSServerAddress": {
       "type": "array",
       "metadata": {
-        "Description": "The DNS address(es) of the DNS Server(s) used by the VNET"
+        "description": "The DNS address(es) of the DNS Server(s) used by the VNET"
       }
     }
   },
   "resources": [
     {
+      "apiVersion": "[parameters('apiVersion')]",
       "name": "[parameters('virtualNetworkName')]",
       "type": "Microsoft.Network/virtualNetworks",
-      "location": "[parameters('location')]",
-      "apiVersion": "2015-06-15",
+      "location": "[resourceGroup().location]",
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
-            "[parameters('addressPrefix')]"
+            "[parameters('virtualNetworkAddressRange')]"
           ]
         },
         "dhcpOptions": {
           "dnsServers": "[parameters('DNSServerAddress')]"
         },
         "subnets": [
-           {
-				"name": "[parameters('subnetPresentationName')]",
-				"properties": {
-					"addressPrefix": "[parameters('PresentationPrefix')]"
-				}
-			},
-			{
-				"name": "[parameters('subnetProcessingName')]",
-				"properties": {
-					"addressPrefix": "[parameters('ProcessingPrefix')]"
-				}
-			},
-			{
-				"name": "[parameters('subnetDataName')]",
-				"properties": {
-					"addressPrefix": "[parameters('DataPrefix')]"
-				}
-			},
-			{
-				"name": "[parameters('subnetAuthenticationName')]",
-				"properties": {
-					"addressPrefix": "[parameters('AuthenticationPrefix')]"
-				}
+          {
+            "name": "[parameters('subnetName')]",
+            "properties": {
+              "addressPrefix": "[parameters('subnetRange')]"
+            }
+          },
+		  {
+			"name": "[parameters('subnet2Name')]",
+			"properties": {
+				"addressPrefix": "[parameters('subnet2Range')]"
 			}
+		  }
         ]
       }
     }
