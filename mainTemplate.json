@@ -316,7 +316,8 @@
     },
     {
       "apiVersion": "2015-01-01",
-      "type": "Microsoft.Resources/deployments",
+
+	    "type": "Microsoft.Resources/deployments",
       "name": "createHeadNode",
       "dependsOn": [
         "[concat('Microsoft.Network/networkInterfaces/', variables('nicNameHN'))]",
@@ -369,6 +370,7 @@
       "apiVersion": "[variables('apiVersion')]",
       "location": "[resourceGroup().location]",
       "dependsOn": [
+	      "Microsoft.Resources/deployments/createHeadNode"
       ],
       "properties": {
         "publisher": "Microsoft.Compute",
